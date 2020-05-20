@@ -25,7 +25,7 @@
         {% for pelicula in lista_peliculas %}
         {% if loop.index0 % 3 == 0 %}
         <div class="row">
-          {% endif %}
+        {% endif %}
         <div class="col" id = "informacion_obj">
         <h3 style="text-align:center">{{pelicula.titulo}}</h3>
         <p>episodio: {{pelicula.episodio}}</p>

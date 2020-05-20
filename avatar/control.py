@@ -87,5 +87,5 @@ def _obtener_residentes(residente_link):
                               _limpiar_vacio(parsed_res["eye_color"]),
                               _limpiar_vacio(parsed_res["birth_year"]),
                               _limpiar_vacio(parsed_res["gender"]),
-                              _obtener_num_planeta(parsed_res["url"]))
+                              _obtener_numero_id(parsed_res["url"]))
     return residente
