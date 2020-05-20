@@ -2,8 +2,13 @@
 @import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700);
 
 * { padding: 50; margin: 50; }
+.heading {
+  text-align: center;
+}
+
 body, html
 {
+  background-image: url(https://cssanimation.rocks/demo/starwars/images/bg.jpg);
   width: 100%;
   height: 100%;
   font-family: "Droid Sans", arial, verdana, sans-serif;
@@ -13,8 +18,16 @@ body, html
 
 }
 
-#infoplaneta{
+#informacion_obj{
   border-color: #FFE81F;
   border-width: 5px;
   border-style: solid;
+}
+
+#header{
+   padding-top: 1%;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   text-align: center;
 }

@@ -22,15 +22,23 @@
 <br>
 
       <div class="container">
-      <div class="row">
+        {% for planeta in lista_planetas %}
+        {% if loop.index0 % 3 == 0 %}
+        <div class="row">
+          {% endif %}
         <div class="col" id = "informacion_obj">
-        <h3 style="text-align:center"><a href={{'/planetas'}}>Mostrar los planetas</a></h3>
-        </div>
-        <div class="col" id = "informacion_obj">
-        <h3 style="text-align:center"><a href={{'/peliculas'}}>Mostrar las peliculas</a></h3>
-        </div>
-      </div>
 
+        <h3 style="text-align:center">{{planeta.nombre_planeta}}</h3>
+        <p>Clima: {{planeta.clima}}</p>
+        <p>Población: {{planeta.poblacion}}</p>
+        <p>Gravedad: {{planeta.gravedad}}</p>
+        <p>url {{planeta.planeta_url}}</p>
+        <p><a href="{{ '/residentes_de_planeta/%s'%planeta.planeta_url|urlencode }}"> Ver residentes del planeta </a></p>
+        </div>
+        {% if loop.index0 % 3 == 2 or loop.last %}
+      </div>
+      {% endif %}
+    {% endfor %}
 
 </div>
 

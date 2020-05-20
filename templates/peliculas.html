@@ -16,21 +16,28 @@
 
 
     <div id="header">
-      <h1>Planetas de Star Wars</h1>
+      <h1>Peliculas de Star Wars</h1>
     </div>
 
 <br>
 
       <div class="container">
-      <div class="row">
+        {% for pelicula in lista_peliculas %}
+        {% if loop.index0 % 3 == 0 %}
+        <div class="row">
+          {% endif %}
         <div class="col" id = "informacion_obj">
-        <h3 style="text-align:center"><a href={{'/planetas'}}>Mostrar los planetas</a></h3>
+        <h3 style="text-align:center">{{pelicula.titulo}}</h3>
+        <p>episodio: {{pelicula.episodio}}</p>
+        <p>Mensaje de mensaje_apertura: {{pelicula.mensaje_apertura}}</p>
+        <p>director: {{pelicula.director}}</p>
+        <p>director: {{pelicula.director}}</p>
+        <p><a href="{{ '/pelicula/%s'%pelicula.pelicula_url|urlencode }}"> Ver residentes del pelicula </a></p>
         </div>
-        <div class="col" id = "informacion_obj">
-        <h3 style="text-align:center"><a href={{'/peliculas'}}>Mostrar las peliculas</a></h3>
-        </div>
+        {% if loop.index0 % 3 == 2 or loop.last %}
       </div>
-
+      {% endif %}
+    {% endfor %}
 
 </div>
 
