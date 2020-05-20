@@ -14,6 +14,7 @@
 
 <body>
 
+
     <div id="header">
       <h1>{{titulo}}</h1>
     </div>
@@ -21,18 +22,18 @@
 <br>
 
       <div class="container">
-        {% for film in lista_peliculas %}
+        {% for planeta in lista_planetas %}
         {% if loop.index0 % 3 == 0 %}
         <div class="row">
         {% endif %}
         <div class="col" id = "informacion_obj">
 
-        <h3 style="text-align:center"> {{film.titulo}} </h3>
-        <p>Episodio: {{film.episodio}} </p>
-        <p>Mensaje de mensaje_apertura: {{film.episodio}} </p>
-        <p>director: {{film.director}} </p>
-        <p>director: {{film.director}} </p>
-        <p><a href="{{ '/residentes_por_pelicula/%s'%film.pelicula_url|urlencode }}"> Ver residentes del pelicula </a></p>
+        <h3 style="text-align:center">{{planeta.nombre_planeta}}</h3>
+        <p>Clima: {{planeta.clima}}</p>
+        <p>Población: {{planeta.poblacion}}</p>
+        <p>Gravedad: {{planeta.gravedad}}</p>
+        <p>url {{planeta.planeta_url}}</p>
+        <p><a href="{{ '/residentes_de_planeta/%s'%planeta.planeta_url|urlencode }}"> Ver residentes del planeta </a></p>
         </div>
         {% if loop.index0 % 3 == 2 or loop.last %}
       </div>

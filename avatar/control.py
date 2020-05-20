@@ -1,8 +1,11 @@
 import json
 import requests
-from .Modelos import planeta_obj, residente_obj, pelicula_obj
+from .Modelos import planeta_obj, personaje_obj, pelicula_obj
 
-__all__ = ["obtener_planetas", "obtener_peliculas", "obtener_residentes_por_planeta", "peliculas_por_residente"]
+__all__ = ["obtener_planetas",
+           "obtener_peliculas",
+           "obtener_personajes",
+           "obtener_personajes_por_planeta"]
 
 def obtener_planetas():
     lista_planetas = []
@@ -34,36 +37,55 @@ def obtener_peliculas():
         json_data = json.loads((requests.get(siguiente_pagina)).content)
         siguiente_pagina = json_data["next"]
         for json_pelicula in json_data["results"]:
-            print(json_pelicula["episode_id"])
             nueva_pelicula = pelicula_obj(_limpiar_vacio(json_pelicula["title"]),
                                     _limpiar_vacio(json_pelicula["episode_id"]),
                                     _limpiar_vacio(json_pelicula["opening_crawl"]),
                                     _limpiar_vacio(json_pelicula["director"]),
                                     _limpiar_vacio(json_pelicula["producer"]),
                                     _limpiar_vacio(json_pelicula["release_date"]),
-                                    _obtener_numero_id(json_pelicula["url"])),
+                                    _obtener_numero_id(json_pelicula["url"]))
             lista_peliculas.append(nueva_pelicula)
     return lista_peliculas
 
-def obtener_residentes_por_planeta(num_planeta):
-    dict_residentes = {}
-    lista_residentes = []
+
+def obtener_personajes():
+    lista_personajes = []
+    #Api de multiples paginas
+    siguiente_pagina = "https://swapi.dev/api/people/"
+    while siguiente_pagina:
+        json_data = json.loads((requests.get(siguiente_pagina)).content)
+        siguiente_pagina = json_data["next"]
+        for personaje_json in json_data["results"]:
+                nuevo_personaje = personaje_obj(
+                              _limpiar_vacio(personaje_json["name"]),
+                              _limpiar_vacio(personaje_json["height"]),
+                              _limpiar_vacio(personaje_json["mass"]),
+                              _limpiar_vacio(personaje_json["hair_color"]),
+                              _limpiar_vacio(personaje_json["skin_color"]),
+                              _limpiar_vacio(personaje_json["eye_color"]),
+                              _limpiar_vacio(personaje_json["birth_year"]),
+                              _limpiar_vacio(personaje_json["gender"]),
+                              _obtener_numero_id(personaje_json["url"]))
+                lista_personajes.append(nuevo_personaje)
+    return lista_personajes
+
+#Obtiene todos los residentes de un planeta
+def obtener_personajes_por_planeta(num_planeta):
+    dict_personajes = {}
+    lista_personajes = []
     api_base = "https://swapi.dev/api/planets/" + str(num_planeta)
     #Api de multiples paginas
     json_data = json.loads((requests.get(api_base)).content)
-    dict_residentes["nombre_planeta"] = json_data["name"]
-    links_residentes = json_data["residents"]
-    for residente_url in links_residentes:
-        nuevo_residente = _obtener_residentes(residente_url)
-        lista_residentes.append(nuevo_residente)
-    dict_residentes["lista_residentes"] = lista_residentes
-    return dict_residentes
+    dict_personajes["nombre_planeta"] = json_data["name"]
+    urls_personajes_de_planeta = json_data["residents"]
+    for url_personaje in urls_personajes_de_planeta:
+        nuevo_personaje = _obtener_personaje(url_personaje)
+        lista_personajes.append(nuevo_personaje)
+    dict_personajes["lista_personajes"] = lista_personajes
+    return dict_personajes
 
 
-def peliculas_por_residente(num_residente):
-    pass
-
-#Utils
+#UTILS
 #Manejo de datos vacios
 def _limpiar_vacio(dato):
     if dato == "N/A" or dato == "unknown":
@@ -77,9 +99,9 @@ def _obtener_numero_id(dato):
     return dato[29:dato_len-1]
 
 #obtiene una clase residente_obj a partir del link json
-def _obtener_residentes(residente_link):
-    parsed_res = json.loads((requests.get(residente_link)).content)
-    residente = residente_obj(_limpiar_vacio(parsed_res["name"]),
+def _obtener_personaje(personaje_link):
+    parsed_res = json.loads((requests.get(personaje_link)).content)
+    personaje = personaje_obj(_limpiar_vacio(parsed_res["name"]),
                               _limpiar_vacio(parsed_res["height"]),
                               _limpiar_vacio(parsed_res["mass"]),
                               _limpiar_vacio(parsed_res["hair_color"]),
@@ -88,4 +110,4 @@ def _obtener_residentes(residente_link):
                               _limpiar_vacio(parsed_res["birth_year"]),
                               _limpiar_vacio(parsed_res["gender"]),
                               _obtener_numero_id(parsed_res["url"]))
-    return residente
+    return personaje

@@ -1,5 +1,3 @@
-
-
 class planeta_obj():
     def __init__(self,
                  nombre_planeta,
@@ -12,7 +10,6 @@ class planeta_obj():
                  residentes,
                  planeta_url,
                  gravedad):
-
         self.nombre_planeta = nombre_planeta
         self.periodo_rotacional = periodo_rotacional
         self.periodo_orbital = periodo_orbital
@@ -28,7 +25,7 @@ class planeta_obj():
         return self.nombre_planeta
 
 
-class residente_obj():
+class personaje_obj():
     def __init__(self,
                  nombre,
                  altura,
@@ -38,7 +35,7 @@ class residente_obj():
                  eye_color,
                  nacimiento,
                  genero,
-                 residente_url):
+                 personaje_url):
         self.nombre = nombre
         self.altura = altura
         self.peso = peso
@@ -46,7 +43,7 @@ class residente_obj():
         self.color_piel = color_piel
         self.nacimiento = nacimiento
         self.genero = genero
-        self.residente_url = residente_url
+        self.personaje_url = personaje_url
 
     def __str__(self):
         return self.nombre

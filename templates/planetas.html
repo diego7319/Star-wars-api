@@ -16,7 +16,7 @@
 
 
     <div id="header">
-      <h1>Planetas de Star Wars</h1>
+      <h1>{{titulo}}</h1>
     </div>
 
 <br>
@@ -25,7 +25,7 @@
         {% for planeta in lista_planetas %}
         {% if loop.index0 % 3 == 0 %}
         <div class="row">
-          {% endif %}
+        {% endif %}
         <div class="col" id = "informacion_obj">
 
         <h3 style="text-align:center">{{planeta.nombre_planeta}}</h3>
@@ -33,7 +33,7 @@
         <p>Población: {{planeta.poblacion}}</p>
         <p>Gravedad: {{planeta.gravedad}}</p>
         <p>url {{planeta.planeta_url}}</p>
-        <p><a href="{{ '/residentes_de_planeta/%s'%planeta.planeta_url|urlencode }}"> Ver residentes del planeta </a></p>
+        <p><a href="{{ '/personajes_por_planeta/%s'%planeta.planeta_url|urlencode }}"> Ver residentes del planeta </a></p>
         </div>
         {% if loop.index0 % 3 == 2 or loop.last %}
       </div>

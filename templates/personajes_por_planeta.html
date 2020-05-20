@@ -9,31 +9,31 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   <link rel="stylesheet" href="/static/main.css">
-  <title>Residentes del planeta {{residentes_por_planeta["nombre_planeta"]}}</title>
+  <title>Personajes del planeta {{personajes_por_planeta["nombre_planeta"]}}</title>
 </head>
 
 <body>
 
 
     <div id="header">
-      <h1>Residentes de {{residentes_por_planeta["nombre_planeta"]}}</h1>
+      <h1>Personajes del planeta {{personajes_por_planeta["nombre_planeta"]}}</h1>
     </div >
 
     <br>
     <div class="container">
-        {% for residente in residentes_por_planeta["lista_residentes"] %}
+        {% for personaje in personajes_por_planeta["lista_personajes"] %}
             {% if loop.index0 % 3 == 0 %}
             <div class="row">
               {% endif %}
             <div class="col" id="informacion_obj">
-            <h3 style="text-align:center">{{residente.nombre}}</h3>
-            <p>altura: {{residente.altura}}</p>
-            <p>peso: {{residente.peso}}</p>
-            <p>color_cabello: {{residente.color_cabello}}</p>
-            <p>color_piel {{residente.color_piel}}</p>
-            <p>nacimiento {{residente.nacimiento}}</p>
-            <p>genero {{residente.genero}}</p>
-            <p><a href="{{ '/peliculas/%s'%residente.residente_url|urlencode }}"> Participaciones en peliculas </a></p>
+            <h3 style="text-align:center">{{personaje.nombre}}</h3>
+            <p>altura: {{personaje.altura}}</p>
+            <p>peso: {{personaje.peso}}</p>
+            <p>color_cabello: {{personaje.color_cabello}}</p>
+            <p>color_piel {{personaje.color_piel}}</p>
+            <p>nacimiento {{personaje.nacimiento}}</p>
+            <p>genero {{personaje.genero}}</p>
+            <p><a href="{{ '/peliculas/%s'%personaje.residente_url|urlencode }}"> Participaciones en peliculas </a></p>
             </div>
             {% if loop.index0 % 3 == 2 or loop.last %}
           </div>

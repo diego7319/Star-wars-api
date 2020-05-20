@@ -14,32 +14,13 @@
 
 <body>
 
+
     <div id="header">
-      <h1>{{titulo}}</h1>
+      <h1>Pagina no encontrada</h1>
     </div>
 
 <br>
 
-      <div class="container">
-        {% for film in lista_peliculas %}
-        {% if loop.index0 % 3 == 0 %}
-        <div class="row">
-        {% endif %}
-        <div class="col" id = "informacion_obj">
-
-        <h3 style="text-align:center"> {{film.titulo}} </h3>
-        <p>Episodio: {{film.episodio}} </p>
-        <p>Mensaje de mensaje_apertura: {{film.episodio}} </p>
-        <p>director: {{film.director}} </p>
-        <p>director: {{film.director}} </p>
-        <p><a href="{{ '/residentes_por_pelicula/%s'%film.pelicula_url|urlencode }}"> Ver residentes del pelicula </a></p>
-        </div>
-        {% if loop.index0 % 3 == 2 or loop.last %}
-      </div>
-      {% endif %}
-    {% endfor %}
-
-</div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

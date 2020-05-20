@@ -8,31 +8,53 @@ app = Flask(__name__, static_folder='static/')
 def index():
     return render_template('index.html')
 
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('error.html')
+
 @app.route("/planetas")
 def planetas():
+    titulo = "Planetas de Star Wars"
     lista_planetas = obtener_planetas()
     return render_template("planetas.html",
                            name="planetas",
-                           lista_planetas = lista_planetas)
+                           lista_planetas = lista_planetas,
+                           titulo = titulo )
+
 
 @app.route("/peliculas")
 def peliculas():
+    titulo = "Peliculas de Star Wars"
     lista_peliculas = obtener_peliculas()
     return render_template("peliculas.html",
                            name="peliculas",
-                           lista_peliculas = lista_peliculas)
+                           lista_peliculas = lista_peliculas,
+                           titulo = titulo)
 
-@app.route("/residentes_de_planeta/<numero_planeta>")
-def residentes_por_planeta(numero_planeta):
-    residentes_por_planeta = obtener_residentes_por_planeta(numero_planeta)
-    return render_template("residentes_por_planeta.html",
-                            residentes_por_planeta = residentes_por_planeta)
 
-@app.route("/peliculas_por_residente/<numero_residente>")
-def peliculas_por_residente(numero_residente):
-    peliculas_por_residentes = obtener_peliculas_por_residente(numero_residente)
-    return render_template("peliculas_por_residente.html",
-                            peliculas_por_residente = peliculas_por_residente)
+@app.route("/personajes")
+def personajes():
+    titulo = "Personajes de Star Wars"
+    lista_personajes = obtener_personajes()
+    return render_template("personajes.html",
+                           name="personajes",
+                           lista_personajes = lista_personajes,
+                           titulo = titulo)
+
+
+@app.route("/personajes_por_planeta/<numero_planeta>")
+def personajes_por_planeta(numero_planeta):
+    personajes_por_planeta = obtener_personajes_por_planeta(numero_planeta)
+    return render_template("personajes_por_planeta.html",
+                            personajes_por_planeta = personajes_por_planeta)
+
+
+@app.route("/peliculas_por_personajes/<numero_personajes>")
+def peliculas_por_personajes(numero_personajes):
+    peliculas_por_personajes = obtener_peliculas_por_personajes(numero_personajes)
+    return render_template("peliculas_por_personajes.html",
+                            peliculas_por_personajes = peliculas_por_personajes)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
