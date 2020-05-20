@@ -1,8 +1,13 @@
 from flask import Flask
 from flask import render_template
 from avatar.control import *
+from flask_caching import Cache
 
+
+cache = Cache(config={'CACHE_TYPE': 'simple'})
 app = Flask(__name__, static_folder='static/')
+cache.init_app(app)
+
 
 @app.route('/')
 def index():
@@ -13,6 +18,7 @@ def page_not_found(error):
     return render_template('error.html')
 
 @app.route("/planetas")
+@cache.cached(timeout=120)
 def planetas():
     titulo = "Planetas de Star Wars"
     lista_planetas = obtener_planetas()
@@ -23,6 +29,7 @@ def planetas():
 
 
 @app.route("/peliculas")
+@cache.cached(timeout=120)
 def peliculas():
     titulo = "Peliculas de Star Wars"
     lista_peliculas = obtener_peliculas()
@@ -33,6 +40,7 @@ def peliculas():
 
 
 @app.route("/personajes")
+@cache.cached(timeout=120)
 def personajes():
     titulo = "Personajes de Star Wars"
     lista_personajes = obtener_personajes()
@@ -43,6 +51,7 @@ def personajes():
 
 
 @app.route("/personajes_por_planeta/<numero_planeta>")
+@cache.cached(timeout=120)
 def personajes_por_planeta(numero_planeta):
     personajes_por_planeta = obtener_personajes_por_planeta(numero_planeta)
     return render_template("personajes_por_planeta.html",
@@ -50,6 +59,7 @@ def personajes_por_planeta(numero_planeta):
 
 
 @app.route("/peliculas_por_personajes/<numero_personajes>")
+@cache.cached(timeout=120)
 def peliculas_por_personajes(numero_personajes):
     peliculas_por_personajes = obtener_peliculas_por_personajes(numero_personajes)
     return render_template("peliculas_por_personajes.html",
