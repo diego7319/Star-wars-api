@@ -1,3 +1,3 @@
 # Star-wars-api
-Proyecto rapido de uso de apis en flask
-https://infostarwars.herokuapp.com/
+Fast project using an star wars api from https://swapi.info/
+Deployed on: https://star-wars-api-8s46.onrender.com/
