@@ -4,9 +4,9 @@ from avatar.control import *
 from flask_caching import Cache
 
 
-#cache = Cache(config={'CACHE_TYPE': 'filesystem', 'CACHE_DIR': '/tmp'})
+cache = Cache(config={'CACHE_TYPE': 'filesystem', 'CACHE_DIR': '/tmp'})
 app = Flask(__name__, static_folder='static/')
-#cache.init_app(app)
+cache.init_app(app)
 timecache= 100
 
 @app.route('/')
@@ -18,7 +18,7 @@ def page_not_found(error):
     return render_template('error.html')
 
 @app.route("/planets")
-#@cache.cached(timeout=timecache)
+@cache.cached(timeout=timecache)
 def planetas():
     titulo = "Star Wars planets"
     lista_planetas = obtener_planetas()
