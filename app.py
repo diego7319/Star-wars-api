@@ -57,4 +57,3 @@ def personajes_por_planeta(numero_planeta):
     return render_template("personajes_por_planeta.html",
                             personajes_por_planeta = personajes_por_planeta)
 
-app.run()
