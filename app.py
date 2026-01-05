@@ -29,7 +29,7 @@ def planetas():
 
 
 @app.route("/movies")
-#@cache.cached(timeout=timecache)
+@cache.cached(timeout=timecache)
 def peliculas():
     titulo = "Star Wars Movies"
     lista_peliculas = obtener_peliculas()
@@ -40,7 +40,7 @@ def peliculas():
 
 
 @app.route("/characters")
-#@cache.cached(timeout=timecache)
+@cache.cached(timeout=timecache)
 def personajes():
     titulo = "Personajes de Star Wars"
     lista_personajes = obtener_personajes()
@@ -51,12 +51,10 @@ def personajes():
 
 
 @app.route("/characters_per_planet/<numero_planeta>")
-#@cache.cached(timeout=timecache)
+@cache.cached(timeout=timecache)
 def personajes_por_planeta(numero_planeta):
     personajes_por_planeta = obtener_personajes_por_planeta(numero_planeta)
     return render_template("personajes_por_planeta.html",
                             personajes_por_planeta = personajes_por_planeta)
 
-
-if __name__ == "__main__":
-    app.run(debug=True)
+app.run()
