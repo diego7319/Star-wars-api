@@ -28,11 +28,10 @@
         <div class="col" id = "informacion_obj">
 
         <h3 style="text-align:center"> {{film.titulo}} </h3>
-        <p>Episodio: {{film.episodio}} </p>
-        <p>Mensaje de mensaje_apertura: {{film.episodio}} </p>
-        <p>director: {{film.director}} </p>
-        <p>director: {{film.director}} </p>
-        <p><a href="{{ '/residentes_por_pelicula/%s'%film.pelicula_url|urlencode }}"> Ver residentes del pelicula </a></p>
+        <p>Episode number: {{film.episodio}} </p>
+        <p>Opening Message: {{film.mensaje_apertura}} </p>
+        <p>Director: {{film.director}} </p>
+        <p>Producer: {{film.productor}} </p>
         </div>
         {% if loop.index0 % 3 == 2 or loop.last %}
       </div>

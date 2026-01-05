@@ -4,10 +4,10 @@ from avatar.control import *
 from flask_caching import Cache
 
 
-cache = Cache(config={'CACHE_TYPE': 'filesystem', 'CACHE_DIR': '/tmp'}})
+#cache = Cache(config={'CACHE_TYPE': 'filesystem', 'CACHE_DIR': '/tmp'})
 app = Flask(__name__, static_folder='static/')
-cache.init_app(app)
-
+#cache.init_app(app)
+timecache= 100
 
 @app.route('/')
 def index():
@@ -17,10 +17,10 @@ def index():
 def page_not_found(error):
     return render_template('error.html')
 
-@app.route("/planetas")
-@cache.cached(timeout=120)
+@app.route("/planets")
+#@cache.cached(timeout=timecache)
 def planetas():
-    titulo = "Planetas de Star Wars"
+    titulo = "Star Wars planets"
     lista_planetas = obtener_planetas()
     return render_template("planetas.html",
                            name="planetas",
@@ -28,10 +28,10 @@ def planetas():
                            titulo = titulo )
 
 
-@app.route("/peliculas")
-@cache.cached(timeout=120)
+@app.route("/movies")
+#@cache.cached(timeout=timecache)
 def peliculas():
-    titulo = "Peliculas de Star Wars"
+    titulo = "Star Wars Movies"
     lista_peliculas = obtener_peliculas()
     return render_template("peliculas.html",
                            name="peliculas",
@@ -39,8 +39,8 @@ def peliculas():
                            titulo = titulo)
 
 
-@app.route("/personajes")
-@cache.cached(timeout=120)
+@app.route("/characters")
+#@cache.cached(timeout=timecache)
 def personajes():
     titulo = "Personajes de Star Wars"
     lista_personajes = obtener_personajes()
@@ -50,20 +50,12 @@ def personajes():
                            titulo = titulo)
 
 
-@app.route("/personajes_por_planeta/<numero_planeta>")
-@cache.cached(timeout=120)
+@app.route("/characters_per_planet/<numero_planeta>")
+#@cache.cached(timeout=timecache)
 def personajes_por_planeta(numero_planeta):
     personajes_por_planeta = obtener_personajes_por_planeta(numero_planeta)
     return render_template("personajes_por_planeta.html",
                             personajes_por_planeta = personajes_por_planeta)
-
-
-@app.route("/peliculas_por_personajes/<numero_personajes>")
-@cache.cached(timeout=120)
-def peliculas_por_personajes(numero_personajes):
-    peliculas_por_personajes = obtener_peliculas_por_personajes(numero_personajes)
-    return render_template("peliculas_por_personajes.html",
-                            peliculas_por_personajes = peliculas_por_personajes)
 
 
 if __name__ == "__main__":

@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   <link rel="stylesheet" href="/static/main.css">
-  <title>Prueba pagina web</title>
+  <title>Test website</title>
 </head>
 
 <body>
@@ -29,11 +29,10 @@
         <div class="col" id = "informacion_obj">
 
         <h3 style="text-align:center">{{planeta.nombre_planeta}}</h3>
-        <p>Clima: {{planeta.clima}}</p>
-        <p>Población: {{planeta.poblacion}}</p>
-        <p>Gravedad: {{planeta.gravedad}}</p>
-        <p>url {{planeta.planeta_url}}</p>
-        <p><a href="{{ '/personajes_por_planeta/%s'%planeta.planeta_url|urlencode }}"> Ver residentes del planeta </a></p>
+        <p>Weather: {{planeta.clima}}</p>
+        <p>Population: {{planeta.poblacion}}</p>
+        <p>Gravity: {{planeta.gravedad}}</p>
+        <p><a href="{{ '/characters_per_planet/%s'%planeta.planeta_url|urlencode }}"> Check  residents of planet </a></p>
         </div>
         {% if loop.index0 % 3 == 2 or loop.last %}
       </div>
